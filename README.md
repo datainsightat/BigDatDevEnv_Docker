@@ -17,16 +17,16 @@ Build the docker containers using the Dockerfiles provided in the subfolders of 
 
 # Access the Tools
 
-|Tool|URL|User|Password|
-|-|-|-|-|
-|Theia IDE|http://localhost:3000|||
-|Jupyter Lab|http://localhost:8888|||
-|Hadoop GUI|http://localhost:9870|||
-|Hadoop Namenode|http://localhost:9000||
-|Spark GUI|http://localhost:8080|||
-|Spark Master|http://localhost:7070|||
-|Postgres GUI|http://localhost:5050|admin@admin.com|root|
-|Postgres DB|http://localhost:5432|root|root|
+|Container|Tool|URL|User|Password|
+|-|-|-|-|-|
+|ide|Theia IDE|http://localhost:3000|||
+|jupyter|Jupyter Lab|http://localhost:8888|||
+|hadoop|Hadoop GUI|http://localhost:9870|||
+|hadoop|Hadoop Namenode|http://localhost:9000||
+|spark|Spark GUI|http://localhost:8080|||
+|spark|Spark Master|http://localhost:7070|||
+|pgadmin4_container|Postgres GUI|http://localhost:5050|admin@admin.com|root|
+|pg_container|Postgres DB|http://localhost:5432|root|root|
 
 # Shut down the Cluster
 
