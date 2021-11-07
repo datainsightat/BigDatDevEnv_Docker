@@ -31,3 +31,8 @@ Build the docker containers using the Dockerfiles provided in the subfolders of 
 # Shut down the Cluster
 
     $ docker-compose down
+
+# 2DO
+
+* Create Postgres Docker
+* Save Workspace on Host
