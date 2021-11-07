@@ -1,0 +1,73 @@
+{
+    "private": true,
+    "theia": {
+        "frontend": {
+            "config": {
+                "applicationName": "Theia Multi-Language Example",
+                "preferences": {
+                    "files.enableTrash": false,
+                    "ruby.useLanguageServer": true,
+                    "php.suggest.basic": false
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "@theia/callhierarchy": "next",
+        "@theia/console": "next",
+        "@theia/core": "next",
+        "@theia/debug": "next",
+        "@theia/editor": "next",
+        "@theia/editor-preview": "next",
+        "@theia/file-search": "next",
+        "@theia/filesystem": "next",
+        "@theia/getting-started": "next",
+        "@theia/keymaps": "next",
+        "@theia/markers": "next",
+        "@theia/messages": "next",
+        "@theia/metrics": "next",
+        "@theia/monaco": "next",
+        "@theia/navigator": "next",
+        "@theia/outline-view": "next",
+        "@theia/output": "next",
+        "@theia/plugin": "next",
+        "@theia/plugin-ext": "next",
+        "@theia/plugin-ext-vscode": "next",
+        "@theia/preferences": "next",
+        "@theia/process": "next",
+        "@theia/scm": "next",
+        "@theia/search-in-workspace": "next",
+        "@theia/task": "next",
+        "@theia/terminal": "next",
+        "@theia/typehierarchy": "next",
+        "@theia/userstorage": "next",
+        "@theia/variable-resolver": "next",
+        "@theia/vsx-registry": "next",
+        "@theia/workspace": "next"
+    },
+    "devDependencies": {
+        "@theia/cli": "next"
+    },
+    "scripts": {
+        "preinstall": "node-gyp install",
+        "start": "theia start --plugins=local-dir:plugins",
+        "download:plugins": "theia download:plugins"
+    },
+    "theiaPluginsDir": "plugins",
+    "theiaPlugins": {
+        "vscode-builtins-pack": "https://open-vsx.org/api/eclipse-theia/builtin-extension-pack/1.50.1/file/eclipse-theia.builtin-extension-pack-1.50.1.vsix",
+        "vscode.git": "https://open-vsx.org/api/vscode/git/1.52.1/file/vscode.git-1.52.1.vsix",
+        "vscode.markdown-language-features": "https://open-vsx.org/api/vscode/markdown-language-features/1.39.2/file/vscode.markdown-language-features-1.39.2.vsix",
+        "vscode.editorconfig": "https://github.com/theia-ide/editorconfig-vscode/releases/download/v0.14.4/EditorConfig-0.14.4.vsix",
+        "vscode-clangd": "https://open-vsx.org/api/llvm-vs-code-extensions/vscode-clangd/0.1.11/file/llvm-vs-code-extensions.vscode-clangd-0.1.11.vsix",
+        "cdt-gdb-vscode": "https://open-vsx.org/api/eclipse-cdt/cdt-gdb-vscode/0.0.92/file/eclipse-cdt.cdt-gdb-vscode-0.0.92.vsix",
+        "vscode-eslint": "https://github.com/theia-ide/vscode-eslint/releases/download/release%2F2.0.15/vscode-eslint-2.0.15.vsix",
+        "vscode-java-debug": "https://github.com/microsoft/vscode-java-debug/releases/download/0.24.0/vscjava.vscode-java-debug-0.24.0.vsix",
+        "vscode-java-dependency-viewer": "https://github.com/microsoft/vscode-java-dependency/releases/download/0.6.0/vscode-java-dependency-0.6.0.vsix",
+        "vscode-java-redhat": "https://github.com/redhat-developer/vscode-java/releases/download/v0.54.2/redhat.java-0.54.2.vsix",
+        "vscode-java-test": "https://github.com/microsoft/vscode-java-test/releases/download/0.22.0/vscjava.vscode-java-test-0.22.0.vsix",
+        "vscode-php-intellisense": "https://github.com/felixfbecker/vscode-php-intellisense/releases/download/v2.3.14/php-intellisense.vsix",
+        "vscode-php-debug": "https://github.com/felixfbecker/vscode-php-debug/releases/download/v1.13.0/php-debug.vsix",
+        "vscode-python": "https://open-vsx.org/api/ms-python/python/2020.8.105369/file/ms-python.python-2020.8.105369.vsix"
+    }
+}

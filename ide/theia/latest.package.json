@@ -1,0 +1,79 @@
+{
+    "private": true,
+    "theia": {
+        "frontend": {
+            "config": {
+                "applicationName": "Theia Data Science IDE",
+                "preferences": {
+                    "files.enableTrash": false,
+                    "ruby.useLanguageServer": false,
+                    "php.suggest.basic": false
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "@theia/callhierarchy": "latest",
+        "@theia/console": "latest",
+        "@theia/core": "latest",
+        "@theia/debug": "latest",
+        "@theia/editor": "latest",
+        "@theia/editor-preview": "latest",
+        "@theia/file-search": "latest",
+        "@theia/filesystem": "latest",
+        "@theia/getting-started": "latest",
+        "@theia/keymaps": "latest",
+        "@theia/markers": "latest",
+        "@theia/messages": "latest",
+        "@theia/metrics": "latest",
+        "@theia/monaco": "latest",
+        "@theia/navigator": "latest",
+        "@theia/outline-view": "latest",
+        "@theia/output": "latest",
+        "@theia/plugin": "latest",
+        "@theia/plugin-ext": "latest",
+        "@theia/plugin-ext-vscode": "latest",
+        "@theia/preferences": "latest",
+        "@theia/process": "latest",
+        "@theia/scm": "latest",
+        "@theia/search-in-workspace": "latest",
+        "@theia/task": "latest",
+        "@theia/terminal": "latest",
+        "@theia/typehierarchy": "latest",
+        "@theia/userstorage": "latest",
+        "@theia/variable-resolver": "latest",
+        "@theia/vsx-registry": "latest",
+        "@theia/workspace": "latest"
+    },
+    "devDependencies": {
+        "@theia/cli": "latest"
+    },
+    "scripts": {
+        "preinstall": "node-gyp install",
+        "start": "theia start --plugins=local-dir:/home/theia/plugins",
+        "download:plugins": "theia download:/home/theia/plugins"
+    },
+    "theiaPluginsDir": "/home/theia/plugins",
+    "theiaPlugins": {
+        "vscode-builtins-pack": "https://open-vsx.org/api/eclipse-theia/builtin-extension-pack/1.50.1/file/eclipse-theia.builtin-extension-pack-1.50.1.vsix",
+        "vscode.git": "https://open-vsx.org/api/vscode/git/1.52.1/file/vscode.git-1.52.1.vsix",
+        "vscode.markdown-language-features": "https://open-vsx.org/api/vscode/markdown-language-features/1.39.2/file/vscode.markdown-language-features-1.39.2.vsix",
+        "vscode.editorconfig": "https://github.com/theia-ide/editorconfig-vscode/releases/download/v0.14.4/EditorConfig-0.14.4.vsix",
+        "vscode-clangd": "https://open-vsx.org/api/llvm-vs-code-extensions/vscode-clangd/0.1.11/file/llvm-vs-code-extensions.vscode-clangd-0.1.11.vsix",
+        "cdt-gdb-vscode": "https://open-vsx.org/api/eclipse-cdt/cdt-gdb-vscode/0.0.92/file/eclipse-cdt.cdt-gdb-vscode-0.0.92.vsix",
+        "vscode-eslint": "https://github.com/theia-ide/vscode-eslint/releases/download/release%2F2.0.15/vscode-eslint-2.0.15.vsix",
+        "vscode-java-debug": "https://github.com/microsoft/vscode-java-debug/releases/download/0.24.0/vscjava.vscode-java-debug-0.24.0.vsix",
+        "vscode-java-dependency-viewer": "https://github.com/microsoft/vscode-java-dependency/releases/download/0.6.0/vscode-java-dependency-0.6.0.vsix",
+        "vscode-java-redhat": "https://github.com/redhat-developer/vscode-java/releases/download/v0.54.2/redhat.java-0.54.2.vsix",
+        "vscode-java-test": "https://github.com/microsoft/vscode-java-test/releases/download/0.22.0/vscjava.vscode-java-test-0.22.0.vsix",
+        "vscode-php-intellisense": "https://github.com/felixfbecker/vscode-php-intellisense/releases/download/v2.3.14/php-intellisense.vsix",
+        "vscode-php-debug": "https://github.com/felixfbecker/vscode-php-debug/releases/download/v1.13.0/php-debug.vsix",
+        "vscode-python": "https://open-vsx.org/api/ms-python/python/2020.8.105369/file/ms-python.python-2020.8.105369.vsix",
+        "vscode-builtin-r": "https://open-vsx.org/api/vscode/r/1.45.1/file/vscode.r-1.45.1.vsix",
+        "vscode-builtin-javascript": "https://open-vsx.org/api/vscode/javascript/1.45.1/file/vscode.javascript-1.45.1.vsix",
+        "vscode-scala": "https://open-vsx.org/api/scala-lang/scala/0.5.0/file/scala-lang.scala-0.5.0.vsix",
+        "vscode-metals": "https://open-vsx.org/api/scalameta/metals/1.10.13/file/scalameta.metals-1.10.13.vsix",
+        "vscode-postgres": "https://open-vsx.org/api/cweijan/vscode-postgresql-client2/3.7.0/file/cweijan.vscode-postgresql-client2-3.7.0.vsix"
+
+    }
+}
