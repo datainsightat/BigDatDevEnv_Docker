@@ -2,20 +2,22 @@
 
 This project provides an WebIDE to interact with Spark and Hadoop/Hive.
 
-# Setup
+# Cluster
+
+## Setup
 
 Build the docker containers using the Dockerfiles provided in the subfolders of this repo.
 
-    $ docker build jupyter jupyter/.
-    $ docker build ide ide/.
-    $ docker build hadoop hadoop/.
-    $ docker build spark spark/.
+    $ docker build -t jupyter jupyter/.
+    $ docker build -t ide ide/.
+    $ docker build -t hadoop hadoop/.
+    $ docker build -t spark spark/.
 
-# Run the Cluster
-
+## Run Cluster
+öls
     $ docker-compose up
 
-# Access the Tools
+## Access the Tools
 
 |Container|Tool|URL|User|Password|
 |-|-|-|-|-|
@@ -28,11 +30,45 @@ Build the docker containers using the Dockerfiles provided in the subfolders of 
 |pgadmin4_container|Postgres GUI|http://localhost:5050|admin@admin.com|root|
 |pg_container|Postgres DB|http://localhost:5432|root|root|
 
-# Shut down the Cluster
+## Shut down Cluster
 
     $ docker-compose down
+
+## Examples
+
+Get some usage examples from [this](https://github.com/datainsightat/scala_examples.git) git repo.
+
+# Postgres
+
+## Create Server
+
+[Postgres GUI](http://localhost:5432) > Add New Server:
+
+    General:
+        Name: newserver
+    Connection:
+        Host: pg_container
+        Username: root
+        Password: root
+
+# Hadoop
+
+## Browse hdfs
+
+    $ docker container exec hadoop hdfs dfs -ls /
+
+## Create directory
+
+    $ docker container exec hadoop hdfs dfs -mkdir /data
+
+## Upload file to hdfs
+
+    $ docker cp file.csv hadoop:/
+    $ docker container exec hadoop hdfs dfs -put file.csv /data/
+    $ docker container exec hadoop rm file.csv
 
 # 2DO
 
 * Create Postgres Docker
 * Save Workspace on Host
+* Hadoop GUI cannot upload csv

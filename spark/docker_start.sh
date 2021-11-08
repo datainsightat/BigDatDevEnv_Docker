@@ -3,8 +3,8 @@
 /etc/init.d/ssh start
 
 #Spark
-#start-master.sh
-#start-slave.sh -m 512M spark://localhost:7077
+#$SPARK_HOME/sbin/start-master.sh
+#$SPARK_HOME/sbin/start-slave.sh spark://localhost:7077
 $SPARK_HOME/sbin/start-all.sh
 
 #Keep Container alive

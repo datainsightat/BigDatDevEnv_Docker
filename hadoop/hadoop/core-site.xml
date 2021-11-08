@@ -25,4 +25,8 @@
         <name>fs.default.name</name>
         <value>hdfs://127.0.0.1:9000</value>
     </property>
+    <property>
+      <name>hadoop.http.staticuser.user</name>
+      <value>root</value>
+  </property>
 </configuration>

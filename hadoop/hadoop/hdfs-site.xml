@@ -18,7 +18,7 @@
 
 <configuration>
     <property>
-        <name>dfs.data.dir</name>
+        <name>dfs.name.dir</name>
         <value>/home/hdoop/dfsdata/namenode</value>
     </property>
     <property>
@@ -28,5 +28,9 @@
     <property>
         <name>dfs.replication</name>
         <value>1</value>
+    </property>
+    <property>
+        <name>dfs.permissions.enabled</name>
+        <value>false</value>
     </property>
 </configuration>
