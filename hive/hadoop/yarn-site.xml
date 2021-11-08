@@ -13,24 +13,28 @@
   limitations under the License. See accompanying LICENSE file.
 -->
 <configuration>
-    <!-- <property>
+    <property>
         <name>yarn.nodemanager.aux-services</name>
         <value>mapreduce_shuffle</value>
     </property>
     <property>
         <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
         <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+    </property>
+    <!-- <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>10.128.0.8</value>
     </property> -->
     <property>
         <name>yarn.resourcemanager.hostname</name>
         <value>localhost</value>
     </property>
-    <!-- <property>
-        <name>yarn.acl.enable</name>
-        <value>0</value>
+    <property>
+        <name>yarn.resourcemanager.webapp.address</name>
+        <value>${yarn.nodemanager.hostname}:5349</value>
     </property>
     <property>
-        <name>yarn.nodemanager.env-whitelist</name>
-        <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PERPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
-    </property> -->
+        <name>yarn.nodemanager.webapp.address</name>
+        <value>${yarn.nodemanager.hostname}:5249</value>
+    </property>
 </configuration>

@@ -44,17 +44,27 @@ services:
       - "5050:80"
     #network_mode: bridge
 
-  hadoop:
-    image: hadoop
-    container_name: hadoop
+  hive:
+    image: hive
+    container_name: hive
     restart: always
     ports:
       - "9870:9870"
-      - "9000:9000"
-      - "9864:9864"
-      - "10000:10000"
-      - "9999:9999"
-      - "9083:9083"
+      - "5349:5349"
+      - "5249:5249"
+
+  # hadoop:
+  #   image: hadoop
+  #   container_name: hadoop
+  #   restart: always
+  #   ports:
+  #     - "9870:9870"
+  #     - "9000:9000"
+  #     - "9864:9864"
+  #     - "10000:10000"
+  #     - "9999:9999"
+  #     - "9083:9083"
+  #     - "8088:8088"
 
   spark:
     image: spark

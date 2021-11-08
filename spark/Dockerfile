@@ -1,5 +1,6 @@
 #https://github.com/eclipse-theia/theia/blob/master/doc/Developing.md#prerequisites
 #https://github.com/theia-ide/theia-apps
+#https://hadooptutorials.info/2020/10/11/part-4-install-spark-2/
 
 FROM ubuntu:18.04 as common
 
@@ -10,7 +11,7 @@ EXPOSE 8080 7077 8081
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV JAVA_VERSION=11
+ENV JAVA_VERSION=8
 ENV JAVA_HOME=/usr/lib/jvm/java-$JAVA_VERSION-openjdk-amd64
 ENV PATH="$JAVA_HOME/bin:${PATH}"
 
@@ -90,7 +91,7 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install -y r-base
 
-ADD ../hive/hive-site.xml $SPARK_HOME/conf/hive-site.xml
+ADD hive/hive-site.xml $SPARK_HOME/conf/hive-site.xml
 #ADD docker_init.sh /
 ADD docker_start.sh /
 

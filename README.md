@@ -25,6 +25,7 @@ Build the docker containers using the Dockerfiles provided in the subfolders of 
 |jupyter|Jupyter Lab|http://localhost:8888|||
 |hadoop|Hadoop GUI|http://localhost:9870|||
 |hadoop|Hadoop Namenode|http://localhost:9000||
+|hadoop|Hadoop Applications GUI|http://localhost:8088||
 |spark|Spark GUI|http://localhost:8080|||
 |spark|Spark Master|http://localhost:7070|||
 |pgadmin4_container|Postgres GUI|http://localhost:5050|admin@admin.com|root|
