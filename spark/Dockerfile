@@ -90,8 +90,10 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install -y r-base
 
+ADD ../hive/hive-site.xml $SPARK_HOME/conf/hive-site.xml
 #ADD docker_init.sh /
 ADD docker_start.sh /
+
 
 #ENTRYPOINT ["bin/bash","docker_init.sh"]
 

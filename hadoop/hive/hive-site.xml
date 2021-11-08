@@ -20,6 +20,14 @@
   <!-- WARNING!!! You must make your changes in hive-site.xml instead.         -->
   <!-- Hive Execution Parameters -->
   <property>
+    <name>system:java.io.tmpdir</name>
+    <value>/tmp/hive/java</value>
+  </property>
+  <property>
+    <name>system:user.name</name>
+    <value>${user.name}</value>
+  </property>
+  <property>
     <name>hive.exec.script.wrapper</name>
     <value/>
     <description/>
