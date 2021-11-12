@@ -17,14 +17,14 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
-    <!-- <property>
+    <property>
         <name>fs.defaultFS</name>
         <value>hdfs://0.0.0.0:54310</value>
-    </property> -->
-    <property>
+    </property>
+    <!-- <property>
       <name>fs.defaultFS</name>
       <value>hdfs://localhost:54310</value>
-    </property>
+    </property> -->
     <property>
       <name>hadoop.http.staticuser.user</name>
       <value>root</value>

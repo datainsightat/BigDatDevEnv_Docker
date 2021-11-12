@@ -19,17 +19,24 @@ Build the docker containers using the Dockerfiles provided in the subfolders of 
 
 ## Access the Tools
 
+### service Ports
 |Container|Tool|URL|User|Password|
 |-|-|-|-|-|
-|ide|Theia IDE|http://localhost:3000|||
-|jupyter|Jupyter Lab|http://localhost:8888|||
-|hadoop|Hadoop GUI|http://localhost:9870|||
-|hadoop|Hadoop Namenode|http://localhost:9000||
-|hadoop|Hadoop Applications GUI|http://localhost:8088||
-|spark|Spark GUI|http://localhost:8080|||
-|spark|Spark Master|http://localhost:7070|||
-|pgadmin4_container|Postgres GUI|http://localhost:5050|admin@admin.com|root|
+|hadoop|Default FS|http://localhost:54310|||
 |pg_container|Postgres DB|http://localhost:5432|root|root|
+|spark|Spark Master|http://localhost:7077|||
+
+### Web GUI Ports
+|Container|Tool|URL|User|Password|
+|-|-|-|-|-|
+|theia|Theia IDE|http://localhost:3000|||
+|jupyter|Jupyter Lab|http://localhost:8888|||
+|jupyter|sparkr-notebook application UI|http://localhost:4040|||
+|hadoop|NameNode|http://localhost:9870|||
+|hadoop|Yarn RM web application|http://localhost:5349|||
+|spark|Spark Master GUI|http://localhost:8080|||
+|spark|Spark Worker GUI|http://localhost:8081|||
+|pgadmin4_container|Postgres GUI|http://localhost:5050|admin@admin.com|root|
 
 ## Shut down Cluster
 
@@ -67,6 +74,17 @@ Get some usage examples from [this](https://github.com/datainsightat/scala_examp
     $ docker cp file.csv hadoop:/
     $ docker container exec hadoop hdfs dfs -put file.csv /data/
     $ docker container exec hadoop rm file.csv
+
+# Hive
+
+## Create hive Table
+
+    $ docker container exec -it hive bash
+    hive$ hive
+    hive> create table if not exists employee (id string, name string, dept string);
+    hive> show tables;
+    hive> insert into employee values("1","Allen","IT");
+    hive> select * from employee;
 
 # 2DO
 

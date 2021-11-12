@@ -25,9 +25,13 @@
         <name>yarn.resourcemanager.hostname</name>
         <value>10.128.0.8</value>
     </property> -->
-    <property>
+    <!-- <property>
         <name>yarn.resourcemanager.hostname</name>
         <value>localhost</value>
+    </property> -->
+    <property>
+        <name>yarn.resourcemanager.hostname</name>
+        <value>0.0.0.0</value>
     </property>
     <property>
         <name>yarn.resourcemanager.webapp.address</name>

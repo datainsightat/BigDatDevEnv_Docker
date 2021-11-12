@@ -1,21 +1,12 @@
 version: "3"
 
-# Build external workspace: 
-
 volumes:
-  #hadoop_namenode:
-  #hadoop_datanode:
-  #hadoop_historyserver:
+
+  hadoop_namenode:
+  hadoop_datanode:
   shared-workspace:
     external: true
   postgres-data:
-  #shared-workspace:
-  #   driver: local
-  #   driver_opts:
-  #     type: 'none'
-  #     o: 'bind'
-  #     #device: "C:\\Users\\at0744799\\projects\\docker\\cluster\\data"
-  #     device: //c/Users/at0744799/projects/docker/cluster/data/
 
 services:
 
@@ -29,7 +20,6 @@ services:
       POSTGRES_DB: newdb
     ports:
       - "5432:5432"
-    #network_mode: bridge
     volumes:
       - postgres-data:/var/lib/postgresql/data
 
@@ -42,29 +32,20 @@ services:
       PGADMIN_DEFAULT_PASSWORD: root
     ports:
       - "5050:80"
-    #network_mode: bridge
 
   hive:
     image: hive
     container_name: hive
     restart: always
     ports:
-      - "9870:9870"
-      - "5349:5349"
-      - "5249:5249"
-
-  # hadoop:
-  #   image: hadoop
-  #   container_name: hadoop
-  #   restart: always
-  #   ports:
-  #     - "9870:9870"
-  #     - "9000:9000"
-  #     - "9864:9864"
-  #     - "10000:10000"
-  #     - "9999:9999"
-  #     - "9083:9083"
-  #     - "8088:8088"
+     - "54310:54310"
+     - "54311:54311"
+     - "9870:9870"
+     - "5349:5349"
+     - "5249:5249"
+    volumes:
+      - hadoop_datanode:/opt/hadoop/hadoop_data/hdfs/datanode
+      - hadoop_namenode:/opt/hadoop/hadoop_data/hdfs/namenode
 
   spark:
     image: spark
@@ -74,22 +55,19 @@ services:
       - "8080:8080"
       - "7077:7077"
       - "8081:8081"
+      - "7000:7000"
 
-  ide:
-    # $theia/docker build -t theia .
-    # docker run -it --init -p 3000:3000 theia:latest
-    image: ide
-    container_name: ide
+  theia:
+    image: theia
+    container_name: theia
     ports:
       - "3000:3000"
     volumes:
       - shared-workspace:/home/project
-    #network_mode: bridge
 
-  jupyterlab:
-    # $jupyter/docker build -t jupyter .
+  jupyter:
     image: jupyter
-    container_name: jupyterlab
+    container_name: jupyter
     ports:
       - "8888:8888"
       - "4040:4040"

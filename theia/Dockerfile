@@ -1,8 +1,9 @@
-#This Dockerfile is based on the work of Andre Marcos Perez (https://github.com/andre-marcos-perez/spark-cluster-on-docker)
+#https://github.com/eclipse-theia/theia/blob/master/doc/Developing.md#prerequisites
+#https://github.com/theia-ide/theia-apps
 
 FROM ubuntu:18.04
 
-EXPOSE 8888
+EXPOSE 3000
 
 ENV LC_ALL=C.UTF-8
 ENV LANG=C.UTF-8
@@ -18,7 +19,6 @@ ENV NODE_VERSION $NODE_VERSION
 ENV YARN_VERSION 1.22.5
 
 ENV SCALA_VERSION="2.12.10"
-ENV SCALA_KERNEL_VERSION="0.10.9"
 ENV SPARK_VERSION="3.2.0"
 ENV SPARK_HADOOP_VERSION="3.2"
 
@@ -27,21 +27,39 @@ ENV PATH="$SPARK_HOME/bin:${PATH}"
 ENV PATH="$SPARK_HOME/sbin:${PATH}"
 ENV PYSPARK_PYTHON=/usr/bin/python3
 
-ENV JUPYTERLAB_VERSION="3.2.1"
+ENV SHELL=/bin/bash
+ENV THEIA_DEFAULT_PLUGINS=local-dir:/home/theia/plugins
+ENV GOPATH=/home/project
 
 ###########
 # GENERAL #
 ###########
 
 RUN apt-get update && \
-    apt-get install -y wget curl openssh-server openssh-client git net-tools
+    apt-get -y install build-essential curl git wget xz-utils libsecret-1-dev libsecret-1-0 net-tools
+
+##############
+# NODE, YARN #
+##############
+
+RUN curl -SLO "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-linux-x64.tar.xz"  && \
+    tar -xJf "node-v$NODE_VERSION-linux-x64.tar.xz" -C /usr/local --strip-components=1 --no-same-owne && \
+    rm "node-v$NODE_VERSION-linux-x64.tar.xz" && \
+    ln -s /usr/local/bin/node /usr/local/bin/nodejs
+
+RUN curl -fSLO --compressed "https://yarnpkg.com/downloads/$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz"  && \
+    mkdir -p /opt/yarn && \
+    tar -xzf yarn-v$YARN_VERSION.tar.gz -C /opt/yarn --strip-components=1 && \
+    ln -s /opt/yarn/bin/yarn /usr/local/bin/yarn && \
+    ln -s /opt/yarn/bin/yarn /usr/local/bin/yarnpkg && \
+    rm yarn-v$YARN_VERSION.tar.gz
 
 ########
 # JAVA #
 ########
 
 RUN apt-get update && \
-    apt-get -y install openjdk-$JAVA_VERSION-jdk openjdk-$JAVA_VERSION-jdk-headless && \
+    apt-get -y install openjdk-$JAVA_VERSION-jdk openjdk-$JAVA_VERSION-jdk-headless maven gradle && \
     ln -s /lib64/ld-linux-x86-64.so.2 /lib/ld-linux-x86-64.so.2
 
 #########
@@ -87,39 +105,35 @@ RUN apt-get install -y apt-transport-https software-properties-common && \
     apt-get update && \
     apt-get install -y r-base
 
-###################
-# Jupyter Kernels #
-###################
+#########
+# THEIA #
+#########
 
-# -- Layer: JupyterLab + Python kernel for PySpark
+WORKDIR /home/theia
 
-RUN apt-get update -y && \
-    apt-get install -y python3-pip python3-dev && \
-    pip3 install --upgrade pip && \
-    pip3 install wget==3.2 pyspark==${SPARK_VERSION} jupyterlab==${JUPYTERLAB_VERSION}
+ADD theia/latest.package.json /home/theia/package.json
 
-# -- Layer: Scala kernel for Spark
+RUN yarn --cache-folder ./ycache && rm -rf ./ycache && \
+    NODE_OPTIONS="--max_old_space_size=4096" yarn theia build && yarn theia download:plugins
 
-RUN apt-get install -y ca-certificates-java --no-install-recommends && \
-    curl -Lo coursier https://git.io/coursier-cli && \
-    chmod +x coursier && \
-    ./coursier launch --fork almond:${SCALA_KERNEL_VERSION} --scala ${SCALA_VERSION} -- --display-name "Scala ${SCALA_VERSION}" --install && \
-    rm -f coursier
+RUN chmod g+rw /home && \
+    mkdir -p /home/project && \
+    mkdir -p /home/theia/.pub-cache/bin && \
+    mkdir -p /usr/local/cargo
 
-# -- Layer: R kernel for SparkR
-
-RUN apt-get install -y r-base-dev && \
-    R -e "install.packages('IRkernel')" && \
-    R -e "IRkernel::installspec(displayname = 'R 3.5', user = FALSE)" && \
-    curl https://archive.apache.org/dist/spark/spark-${SPARK_VERSION}/SparkR_${SPARK_VERSION}.tar.gz -k -o sparkr.tar.gz && \
-    R CMD INSTALL sparkr.tar.gz && \
-    rm -f sparkr.tar.gz
+# Theia application
+RUN apt-get clean && \
+  apt-get autoremove -y && \
+  rm -rf /var/cache/apt/* && \
+  rm -rf /var/lib/apt/lists/* && \
+  rm -rf /tmp/*
 
 ##########
 # FINISH #
 ##########
 
 ADD docker_start.sh /docker_start.sh
+ADD spark/spark-env.sh $SPARK_HOME/conf/spark-env.sh
 
 #Run at container start
 CMD ["/bin/bash","/docker_start.sh"]

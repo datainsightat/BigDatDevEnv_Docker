@@ -3,7 +3,11 @@
 
 FROM ubuntu:20.04
 
-EXPOSE 5349 5249 9870
+#Hadoop
+EXPOSE 54310 54311 9870 5349 5259
+
+#Hive
+EXPOSE 10000 9999 9083
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -27,20 +31,17 @@ ENV HADOOP_YARN_HOME=$HADOOP_HOME
 ENV HIVE_VERSION="3.1.2"
 ENV HIVE_HOME /opt/hive
 ENV PATH="$HIVE_HOME/bin:${PATH}"
-ENV CLASSPATH=$CLASSPATH:$HADOOP_HOME/lib/*:.
-ENV CLASSPATH=$CLASSPATH:$HIVE_HOME/lib/*:.
+# ENV CLASSPATH=$CLASSPATH:$HADOOP_HOME/lib/*:.
+# ENV CLASSPATH=$CLASSPATH:$HIVE_HOME/lib/*:.
 
-# RUN useradd -ms /bin/bash hadoop_user && \
-#     usermod -aG sudo hadoop_user && \
-#     su - hadoop_user
+ENV SSH_USER="root"
 
 ###########
 # GENERAL #
 ###########
 
 RUN apt-get update && \
-    apt-get install -y wget openssh-server openssh-client && \
-    /etc/init.d/ssh start
+    apt-get install -y wget openssh-server openssh-client net-tools
 
 ########
 # JAVA #
@@ -65,22 +66,6 @@ ADD hadoop/* $HADOOP_CONF_DIR/
 RUN mkdir -p $HADOOP_HOME/hadoop_data/hdfs/namenode && \
     mkdir -p $HADOOP_HOME/hadoop_data/hdfs/datanode
 
-# Create SSH key
-
-ADD ssh/config ~/.ssh/config
-
-RUN ssh-keygen -q -t rsa -P '' -f ~/.ssh/id_rsa && \
-    cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys && \
-    chmod 0600 ~/.ssh/authorized_keys
-
-# ADD hadoop_start.sh /hadoop_start.sh
-# RUN ./hadoop_start.sh
-
-# RUN /etc/init.d/ssh start && \
-#     $HADOOP_HOME/sbin/start-dfs.sh && \
-#     $HADOOP_HOME/sbin/start-yarn.sh && \
-#     $HADOOP_HOME/bin/mapred --daemon start historyserver
-
 ########
 # HIVE #
 ########
@@ -91,8 +76,10 @@ RUN wget https://dlcdn.apache.org/hive/hive-$HIVE_VERSION/apache-hive-$HIVE_VERS
     rm apache-hive-$HIVE_VERSION-bin.tar.gz
 
 ADD hive/* $HIVE_HOME/conf/
+ADD hive/* $SPARK_HOME/conf/
 
 RUN chmod +x $HIVE_HOME/conf/hive-env.sh
+RUN chmod +x $SPARK_HOME/conf/hive-env.sh
 
 RUN rm $HIVE_HOME/lib/guava* && \
     cp $HADOOP_HOME/share/hadoop/hdfs/lib/guava* $HIVE_HOME/lib/
@@ -101,9 +88,22 @@ RUN rm $HIVE_HOME/lib/guava* && \
 # FINISH #
 ##########
 
+# Create SSH key
+
+RUN /etc/init.d/ssh start
+
+ADD ssh/config root/.ssh/config
+
+RUN ssh-keygen -q -t rsa -P '' -f $SSH_USER/.ssh/id_rsa && \
+    cat $SSH_USER/.ssh/id_rsa.pub >> $SSH_USER/.ssh/authorized_keys && \
+    chmod 0600 $SSH_USER/.ssh/authorized_keys
+
 #Run at container start
 ADD docker_init.sh /docker_init.sh
 ADD docker_start.sh /docker_start.sh
+
+RUN mkdir /data
+ADD data/* /data/
 
 #Run during container build
 RUN ["bin/bash","docker_init.sh"]
