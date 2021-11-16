@@ -17,8 +17,9 @@ ARG NODE_VERSION=12.18.3
 ENV NODE_VERSION $NODE_VERSION
 ENV YARN_VERSION 1.22.5
 
-ENV SCALA_VERSION="2.12.10"
-ENV SCALA_KERNEL_VERSION="0.10.9"
+ENV SCALA_VERSION="2.12.14"
+#https://almond.sh/docs/install-versions
+ENV ALMOND_VERSION="0.10.9"
 ENV SPARK_VERSION="3.2.0"
 ENV SPARK_HADOOP_VERSION="3.2"
 
@@ -98,13 +99,13 @@ RUN apt-get update -y && \
     pip3 install --upgrade pip && \
     pip3 install wget==3.2 pyspark==${SPARK_VERSION} jupyterlab==${JUPYTERLAB_VERSION}
 
-# -- Layer: Scala kernel for Spark
+# # -- Layer: Scala kernel for Spark
 
-RUN apt-get install -y ca-certificates-java --no-install-recommends && \
-    curl -Lo coursier https://git.io/coursier-cli && \
-    chmod +x coursier && \
-    ./coursier launch --fork almond:${SCALA_KERNEL_VERSION} --scala ${SCALA_VERSION} -- --display-name "Scala ${SCALA_VERSION}" --install && \
-    rm -f coursier
+# RUN apt-get install -y ca-certificates-java --no-install-recommends && \
+#     curl -Lo coursier https://git.io/coursier-cli && \
+#     chmod +x coursier && \
+#     ./coursier launch --fork almond:${ALMOND_VERSION} --scala ${SCALA_VERSION} -- --display-name "Scala ${SCALA_VERSION}" --install && \
+#     rm -f coursier
 
 # -- Layer: R kernel for SparkR
 

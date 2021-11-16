@@ -66,6 +66,11 @@ ADD hadoop/* $HADOOP_CONF_DIR/
 RUN mkdir -p $HADOOP_HOME/hadoop_data/hdfs/namenode && \
     mkdir -p $HADOOP_HOME/hadoop_data/hdfs/datanode
 
+#Fix Maven bug
+RUN wget https://repo1.maven.org/maven2/org/apache/htrace/htrace-core4/4.0.1-incubating/htrace-core4-4.0.1-incubating.jar && \
+    mv htrace-core4-4.0.1-incubating.jar $HADOOP_HOME/lib && \
+    rm htrace-core4-4.0.1-incubating.jar
+
 ########
 # HIVE #
 ########
