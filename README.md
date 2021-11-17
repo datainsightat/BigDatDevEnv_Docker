@@ -100,3 +100,4 @@ You can find some templates [here](https://github.com/datainsightat/scala_exampl
 * Split Spark, Theia, Jupyter > Base / Service
 * Hadoop GUI cannot upload csv
 * R Pipeline
+* Environment file
