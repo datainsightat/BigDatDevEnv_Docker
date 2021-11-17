@@ -21,6 +21,7 @@ ENV YARN_VERSION 1.22.5
 ENV SCALA_VERSION="2.12.14"
 ENV SPARK_VERSION="3.2.0"
 ENV SPARK_HADOOP_VERSION="3.2"
+ENV POSTGRES_JDBC_VERSION="42.3.1"
 
 ENV SPARK_HOME /opt/spark
 ENV PATH="$SPARK_HOME/bin:${PATH}"
@@ -80,11 +81,18 @@ RUN wget https://archive.apache.org/dist/spark/spark-$SPARK_VERSION/spark-$SPARK
     mv spark-$SPARK_VERSION-bin-hadoop$SPARK_HADOOP_VERSION/ $SPARK_HOME && \
     rm spark-$SPARK_VERSION-bin-hadoop$SPARK_HADOOP_VERSION.tgz
 
+############
+# POSTGRES #
+############
+
+RUN wget https://jdbc.postgresql.org/download/postgresql-$POSTGRES_JDBC_VERSION.jar && \
+    mv https://jdbc.postgresql.org/download/postgresql-$POSTGRES_JDBC_VERSION.jar $SPARK_HOME/jars
+
 ##########
 # PYTHON #
 ##########
 
-RUN apt-get update \
+RUN apt-get update -y \
     && apt-get install -y software-properties-common \
     && add-apt-repository -y ppa:deadsnakes/ppa \
     && apt-get install -y python-dev python-pip \
@@ -92,7 +100,7 @@ RUN apt-get update \
     && apt-get remove -y software-properties-common \
     && python -m pip install --upgrade pip --user \
     && python3.8 -m pip install --upgrade pip --user \
-    && pip3 install python-language-server flake8 autopep8 pyspark==${SPARK_VERSION}
+    && pip3 install python-language-server flake8 autopep8 pyspark==${SPARK_VERSION} pandas python3-psycopg2
 
 #####
 # R #

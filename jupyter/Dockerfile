@@ -22,6 +22,7 @@ ENV SCALA_VERSION="2.12.14"
 ENV ALMOND_VERSION="0.10.9"
 ENV SPARK_VERSION="3.2.0"
 ENV SPARK_HADOOP_VERSION="3.2"
+ENV POSTGRES_JDBC_VERSION="42.3.1"
 
 ENV SPARK_HOME /opt/spark
 ENV PATH="$SPARK_HOME/bin:${PATH}"
@@ -62,6 +63,13 @@ RUN wget https://archive.apache.org/dist/spark/spark-$SPARK_VERSION/spark-$SPARK
     tar xvf spark-$SPARK_VERSION-bin-hadoop$SPARK_HADOOP_VERSION.tgz && \
     mv spark-$SPARK_VERSION-bin-hadoop$SPARK_HADOOP_VERSION/ $SPARK_HOME && \
     rm spark-$SPARK_VERSION-bin-hadoop$SPARK_HADOOP_VERSION.tgz
+
+############
+# POSTGRES #
+############
+
+RUN wget https://jdbc.postgresql.org/download/postgresql-$POSTGRES_JDBC_VERSION.jar && \
+    mv https://jdbc.postgresql.org/download/postgresql-$POSTGRES_JDBC_VERSION.jar $SPARK_HOME/jars
 
 ##########
 # PYTHON #
