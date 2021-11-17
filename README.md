@@ -90,8 +90,13 @@ Get some usage examples from [this](https://github.com/datainsightat/scala_examp
     hive> insert into employee values("1","Allen","IT");
     hive> select * from employee;
 
+# Examples
+
+You can find some templates [here](https://github.com/datainsightat/scala_examples)
+
 # 2DO
 
 * Create Postgres Docker
-* Save Workspace on Host
+* Split Spark, Theia, Jupyter > Base / Service
 * Hadoop GUI cannot upload csv
+* R Pipeline
