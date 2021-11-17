@@ -92,7 +92,7 @@ RUN apt-get update \
     && apt-get remove -y software-properties-common \
     && python -m pip install --upgrade pip --user \
     && python3.8 -m pip install --upgrade pip --user \
-    && pip3 install python-language-server flake8 autopep8
+    && pip3 install python-language-server flake8 autopep8 pyspark==${SPARK_VERSION}
 
 #####
 # R #
