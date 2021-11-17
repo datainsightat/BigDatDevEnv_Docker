@@ -4,6 +4,10 @@ This project provides an WebIDE to interact with Spark and Hadoop/Hive.
 
 # Cluster
 
+## Architecture
+
+![cluster Architectue](resources/img/Architecture.drawio.svg)
+
 ## Setup
 
 Build the docker containers using the Dockerfiles provided in the subfolders of this repo.
@@ -22,9 +26,9 @@ Build the docker containers using the Dockerfiles provided in the subfolders of 
 ### service Ports
 |Container|Tool|URL|User|Password|
 |-|-|-|-|-|
-|hadoop|Default FS|http://localhost:54310|||
-|pg_container|Postgres DB|http://localhost:5432|root|root|
-|spark|Spark Master|http://localhost:7077|||
+|hadoop|Default FS|http://hive:54310|||
+|pg_container|Postgres DB|http://pg_container:5432|root|root|
+|spark|Spark Master|http://spark:7077|||
 
 ### Web GUI Ports
 |Container|Tool|URL|User|Password|
