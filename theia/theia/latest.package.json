@@ -73,7 +73,11 @@
         "vscode-builtin-javascript": "https://open-vsx.org/api/vscode/javascript/1.45.1/file/vscode.javascript-1.45.1.vsix",
         "vscode-scala": "https://open-vsx.org/api/scala-lang/scala/0.5.0/file/scala-lang.scala-0.5.0.vsix",
         "vscode-metals": "https://open-vsx.org/api/scalameta/metals/1.10.13/file/scalameta.metals-1.10.13.vsix",
-        "vscode-postgres": "https://open-vsx.org/api/cweijan/vscode-postgresql-client2/3.7.0/file/cweijan.vscode-postgresql-client2-3.7.0.vsix"
-
+        "vscode-postgres": "https://open-vsx.org/api/cweijan/vscode-postgresql-client2/3.7.0/file/cweijan.vscode-postgresql-client2-3.7.0.vsix",
+        "vscode-r": "https://open-vsx.org/api/Ikuyadeu/r/2.3.2/file/Ikuyadeu.r-2.3.2.vsix",
+        "vscode-r-debugger": "https://open-vsx.org/api/RDebugger/r-debugger/0.4.7/file/RDebugger.r-debugger-0.4.7.vsix",
+        "vscode-coderunner": "https://open-vsx.org/api/formulahendry/code-runner/0.11.6/file/formulahendry.code-runner-0.11.6.vsix",
+        "vscode-rainbow-csv": "https://open-vsx.org/api/mechatroner/rainbow-csv/1.7.1/file/mechatroner.rainbow-csv-1.7.1.vsix",
+        "vscode-html-css": "https://open-vsx.org/api/ecmel/vscode-html-css/1.9.1/file/ecmel.vscode-html-css-1.9.1.vsix"
     }
 }
