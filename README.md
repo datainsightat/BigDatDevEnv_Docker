@@ -102,3 +102,4 @@ You can find some templates [here](https://github.com/datainsightat/scala_exampl
 * R Pipeline
 * Environment file
 * Theia: R extension for visual studio code, r debugger, code runner
+* Mongo
