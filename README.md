@@ -13,9 +13,13 @@ This project provides an WebIDE to interact with Spark and Hadoop/Hive.
 Build the docker containers using the Dockerfiles provided in the subfolders of this repo.
 
     $ docker build -t jupyter jupyter/.
-    $ docker build -t ide ide/.
+    $ docker build -t theia theia/.
     $ docker build -t hadoop hadoop/.
     $ docker build -t spark spark/.
+
+Create external volume
+
+    $ docker volume create --name=shared-workspace
 
 ## Run Cluster
 öls
