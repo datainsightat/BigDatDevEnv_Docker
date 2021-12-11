@@ -104,3 +104,8 @@ You can find some templates [here](https://github.com/datainsightat/scala_exampl
 * Split Spark, Theia, Jupyter > Base / Service
 * Hadoop GUI cannot upload csv
 * Environment file
+<<<<<<< HEAD
+=======
+* Theia: R extension for visual studio code, r debugger, code runner
+* Mongo
+>>>>>>> 3847c4b571dae4934773cdce81e8fd9da782bbb3
