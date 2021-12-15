@@ -16,6 +16,7 @@ Build the docker containers using the Dockerfiles provided in the subfolders of 
     $ docker build -t theia theia/.
     $ docker build -t hadoop hadoop/.
     $ docker build -t spark spark/.
+    $ docker build -t kafka kafka/.
 
 Create external volume
 
