@@ -17,6 +17,7 @@ Build the docker containers using the Dockerfiles provided in the subfolders of 
     $ docker build -t hadoop hadoop/.
     $ docker build -t spark spark/.
     $ docker build -t kafka kafka/.
+    $ docker build -t elasticsearch elasticsearch/.
 
 Create external volume
 
