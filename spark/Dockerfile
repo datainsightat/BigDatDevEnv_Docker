@@ -68,7 +68,7 @@ RUN wget https://archive.apache.org/dist/spark/spark-$SPARK_VERSION/spark-$SPARK
 ############
 
 RUN wget https://jdbc.postgresql.org/download/postgresql-$POSTGRES_JDBC_VERSION.jar && \
-    mv https://jdbc.postgresql.org/download/postgresql-$POSTGRES_JDBC_VERSION.jar $SPARK_HOME/jars
+    mv postgresql-$POSTGRES_JDBC_VERSION.jar $SPARK_HOME/jars
 
 ##########
 # FINISH #
